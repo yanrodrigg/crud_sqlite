@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--Este template corresponde à página que mostrar uma listagem
+de todos os produtos cadastrados-->
+    <div class="container mt-3">
+
+        <h1>Lista de produtos</h1>
+        <!-- Quando clicamos no botão chamamos a função de editar_produto passando o id = 0
+        E como nós combinamos entre nós, quando chegar lá o id 0 o back-end vai entender que é
+    para gerar um novo código de produto!-->
+        <a href="{{ url_for('editar_produto', id=0) }}" class="btn btn-primary">Adicionar</a>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Descricao</th>
+                    <th>Preço</th>
+                    <th>Imagem</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- NO NOSSO PROJETO ORIGINAL, ESTE TEMPLATE RECEBIA UM DICIONÁRIO PARA PERCORRER. PRECISAMOS ALTERAR PARA QUE ELE RECEBA UMA LISTA DE TUPLAS -->
+                    {% for id, produto in produtos.items() %}
+                    <tr>
+                        <td> {{ id }} </td>
+                        <td> {{ produto['nome'] }} </td>
+                        <td> {{ produto['descricao'] }}</td>
+                        <td> {{ produto['preco'] }} </td>
+                        <td><img src="{{ url_for('static', filename='img/' + produto['imagem']) }}" alt="thumbnail" class="img-thumbnail"></td>
+                        <td><a href="{{ url_for('exibir_produto', id=id) }}">Editar</a></td>
+                    </tr>
+                    {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

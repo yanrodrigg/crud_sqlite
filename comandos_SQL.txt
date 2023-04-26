@@ -1,0 +1,33 @@
+COMANDO: SELECT
+OBJETIVO: Retornar uma (com restrição) ou mais (sem restrição) linhas de uma tabela do banco de dados
+SINTAXE SEM RESTRIÇÃO: SELECT coluna1, coluna2, coluna3 FROM tabela
+EXEMPLO SEM RESTRIÇÃO NO SQLITE: SELECT * FROM produtos *obs: o asterisco foi usado como coringa que representa TODAS as colunas da tabela ao invés de listar cada uma delas
+EXEMPLO SEM RESTRIÇÃO NO PYTHON: SELECT * FROM produtos *obs: o asterisco foi usado como coringa que representa TODAS as colunas da tabela ao invés de listar cada uma delas
+
+SINTAXE COM RESTRIÇÃO: SELECT coluna1, coluna2, coluna3 FROM tabela WHERE coluna = valor
+EXEMPLO COM RESTRIÇÃO NO SQLITE: SELECT * FROM produtos WHERE id_produto = 1  *obs: o asterisco foi usado como coringa que representa TODAS as colunas da tabela ao invés de listar cada uma delas
+EXEMPLO COM RESTRIÇÃO NO PYTHON: SELECT * FROM produtos WHERE id_produto = ?  *obs: o asterisco foi usado como coringa que representa TODAS as colunas da tabela ao invés de listar cada uma delas. Quando inserimos valores dinamicamente através do python é importante usarmos argumentos através das ? para evitar uma série de vulnerabilidades.
+
+
+----------------------------------
+COMANDO: INSERT
+OBJETIVO: Inserir dados em uma tabela do banco de dados
+SINTAXE: INSERT INTO nome_da_tabela (coluna1, coluna2, coluna3) VALUES (valor1, valor2, valor3)
+EXEMPLO NO SQLITE: INSERT INTO produtos (nome_produto, descricao_produto) VALUES ('Camiseta', 'Camiseta Hering modelo World Cotton')
+EXEMPLO NO PYTHON: INSERT INTO produtos (nome_produto, descricao_produto) VALUES (?, ?) *obs: quando inserimos valores dinamicamente através do python é importante usarmos argumentos através das ? para evitar uma série de vulnerabilidades.
+
+
+----------------------------------
+COMANDO: UPDATE
+OBJETIVO: Atualizar dados em uma tabela do banco de dados
+SINTAXE: UPDATE nome_da_tabela SET coluna1 = valor1, coluna2 = valor2, coluna3 = valor3 WHERE coluna = valor
+EXEMPLO NO SQLITE: UPDATE produtos SET nome_produto = 'Camiseta Preta', descricao_produto = 'Camiseta Hering modelo World' WHERE id_produto = 1
+EXEMPLO NO PYTHON: UPDATE produtos SET nome_produto = ?, descricao_produto = ? WHERE id_produto = ?
+
+
+----------------------------------
+COMANDO: DELETE
+OBJETIVO: Remover dados de uma tabela do banco de dados
+SINTAXE: DELETE FROM nome_da_tabela WHERE  coluna = valor
+EXEMPLO NO SQLITE: DELETE FROM produtos WHERE id_produto = 1
+EXEMPLO NO PYTHON: DELETE FROM produtos WHERE id_produto = ?
