@@ -53,7 +53,7 @@ def remover_produto(id:int):
         return False
 
 #read
-def retornar_produto(id:int) -> dict: 
+def retornar_produto(id:int) -> tuple: 
     try:
         if id == 0:
             return gerar_id(), "", "", "", ""
@@ -69,7 +69,7 @@ def retornar_produto(id:int) -> dict:
         print(ex)
         return False
 
-def retornar_produtos() -> dict:
+def retornar_produtos() -> list:
     try:
        
         conn = sqlite3.connect("produtos.db")
